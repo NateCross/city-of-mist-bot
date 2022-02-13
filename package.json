@@ -1,13 +1,14 @@
 {
   "dependencies": {
-    "discord.js": "^13.6.0"
+    "colors": "^1.4.0",
+    "discord.js": "^13.6.0",
+    "fs": "^0.0.1-security"
   },
   "license": "MIT",
   "name": "city-of-mist-bot",
   "description": "This project uses Discord.js to create a Discord bot to facilitate playing the [City of Mist](https://cityofmist.co/) TTRPG by Son of Oak Game Studio.",
   "version": "1.0.0",
   "main": "src/index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js"

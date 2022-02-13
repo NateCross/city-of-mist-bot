@@ -8,11 +8,14 @@ This project uses Discord.js to create a Discord bot to facilitate playing the
 - Run `npm install`
 - Create a file called `config.json` in the directory.
 - Write the Discord Bot token inside it as follows:
+  - If you don't have one, get a token at the [Discord Developer Portal](https://discord.com/developers/applications).
 ```json
 {
   "token": "<insert token here>"
 }
 ```
+- Run `npm start`, or `node .` when at the root of the repo.
+- The bot should be working now.
 
 ## Features
 - [ ] Display Core Moves
