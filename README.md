@@ -16,14 +16,19 @@ This project uses Discord.js to create a Discord bot to facilitate playing the
   "clientId": "<insert Discord Dev Portal ID here>"
 }
 ```
+- Run `npm deploy-commands` or `node deploy-commands.js` at the root.
+  - This is used to register the slash commands.
+  - You only need to do this once after you change or add a command.
 - Run `npm start`, or `node .` when at the root of the repo.
 - The bot should be working now.
 
 ## Features
-- [ ] Display Core Moves
+- [x] Display Core Moves
+  - [ ] Display the other player moves
 - [ ] Show info for each theme
 
 ## TODO
-- [ ] Try to use those fancy Discord features
+- [?] Try to use those fancy Discord features
+  - [x] Embeds with buttons for displaying moves
 - [ ] Maybe add a dice roller
 - [ ] Maybe add a way to track characters

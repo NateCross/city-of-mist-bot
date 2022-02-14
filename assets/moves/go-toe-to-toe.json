@@ -1,0 +1,6 @@
+{
+    "name": "Go Toe To Toe",
+    "id": "go-toe-to-toe",
+    "type": "Basic",
+    "desc": "When you use your abilities to overcome someone or something in a struggle for control, state what your goal is. Your opponent can describe how they respond, at their option. Roll+Power. On a 7-9, choose 1. On a 10+, choose 2:\n- You manage to achieve your goal, e.g., take something they hold.\n- You get them good, giving your opponent a status with tier=Power.\n- You block, dodge, or counter their best attempts. If you don't choose this, they can impose a status on you. If they are a PC, its tier=their Power."
+}
