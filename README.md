@@ -23,10 +23,12 @@ This project uses Discord.js to create a Discord bot to facilitate playing the
 - The bot should be working now.
 
 ## Features
-- [ ] Display Core Moves
+- [x] Display Core Moves
+  - [ ] Display the other player moves
 - [ ] Show info for each theme
 
 ## TODO
-- [ ] Try to use those fancy Discord features
+- [?] Try to use those fancy Discord features
+  - [x] Embeds with buttons for displaying moves
 - [ ] Maybe add a dice roller
 - [ ] Maybe add a way to track characters
