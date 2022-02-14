@@ -1,5 +1,6 @@
 {
     "name": "Take The Risk",
+    "id": "take-the-risk",
     "type": "Basic",
     "desc": "When you perform a daring, risky, or outright stupid feat, roll+Power. On a 10+, you do it, somehow. On a 7-9, things get messy. The MC will offer you a hard bargain or an ugly choice."
 }

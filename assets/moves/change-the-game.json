@@ -1,0 +1,6 @@
+{
+    "name": "Change The Game",
+    "id": "change-the-game",
+    "type": "Basic",
+    "desc": "When you use your abilities to give yourself or your allies an advantage, roll+Power. On a hit, you get Juice=Power. Spend your Juice to gain the following effects, one-to-one:\n- Create a story tag\n- Burn a power tag or story tag\nGive or reduce a status (one tier per point of juice)"
+}
