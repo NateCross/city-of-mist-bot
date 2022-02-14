@@ -1,0 +1,6 @@
+{
+    "name": "Hit With All You've Got",
+    "id": "hit-with-all-youve-got",
+    "type": "Basic",
+    "desc": "When you have a clear shot and you use your abilities to hit someone or something with all you’ve got, roll+Power. On a hit, you give the target an appropriate status of your choice with tier=Power. On a 10+, choose 2. On a 7-9, choose 1:\n- You take cover or secure a superior position. If you don’t choose this, they can impose a status on you. If they are a PC, its tier=their Power.\n- You get them good or get many of them (+1 tier).\n- You control the collateral damage.\n- You hold the target’s attention, if possible.\n- You gain the upper hand. Take 1 Juice"
+}

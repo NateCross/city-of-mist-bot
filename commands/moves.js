@@ -7,56 +7,35 @@ const filenames = fs.readdirSync('./assets/moves')
 
 const moveList = [];
 
+// Scanning moves dir for json files of moves, pushed to an array
 for (const file of filenames) {
   const object = require(`../assets/moves/${file}`);
   moveList.push(object);
 }
 
-// Sample code
-const row = new MessageActionRow()
-            .addComponents(
-              new MessageButton()
-                  .setCustomId('take-the-risk')
-                  .setLabel('Take The Risk')
-                  .setStyle('PRIMARY'),
-              new MessageButton()
-                  .setCustomId('primary')
-                  .setLabel('Primary')
-                  .setStyle('PRIMARY'),
-            );
-
-// Generate an array of buttons from the moves in json files
-// const messageButtons = [];
-// for (let move of moveList) {
-//   console.log(move.name);
-//   let button = new MessageButton()
-//                .setCustomId(move.id)
-//                .setLabel(move.name)
-//                .setStyle('PRIMARY');
-//   messageButtons.push(button);
-//   // console.log();
-// }
+// Creating buttons from the move array
 const messageButtons = moveList.map(
   move => new MessageButton()
           .setCustomId(move.id)
           .setLabel(move.name)
           .setStyle('PRIMARY')
 );
-console.log(`Message Buttons: ${messageButtons}`);
 
+// Creating individual rows of 5 from the array of buttons
 const buttonRow = [];
 let buttonRowCounter = 0;
-console.log(`empty buttonrow is: ${buttonRow[buttonRowCounter]}`);
+let buttonRowTotal = 0;
 for (const button of messageButtons) {
   if (typeof buttonRow[buttonRowCounter] === 'undefined')
     buttonRow[buttonRowCounter] = new MessageActionRow();
   buttonRow[buttonRowCounter].addComponents(button);
+  if (++buttonRowTotal == 5) {
+    buttonRowTotal = 0;
+    ++buttonRowCounter;
+  }
+  console.log(`buttonRowCounter: ${buttonRowCounter}`);
+  console.log(`buttonRowTotal: ${buttonRowTotal}`);
 }
-console.log(`button row: ${buttonRow}`);
-// row[rowCounter] = new MessageActionRow()
-//                   .addComponents(
-//                     
-//                   )
 
 const embed = new MessageEmbed()
               .setColor('#0099ff')
@@ -68,15 +47,27 @@ module.exports = {
     .setName('moves')
     .setDescription('Displays an embed of City of Mist moves.'),
   async execute(interaction) {
-    await interaction.reply({ embeds: [embed], components: [buttonRow[0]] });
-    const filter = i => i.customId === 'primary';
+    await interaction.reply({ embeds: [embed], components: buttonRow });
+    // const filter = i => i.customId === 'primary';
+    const filter = i => messageButtons.some(button => {
+      console.log(`i: ${i.customId} buttonId: ${button.customId}`);
+      return i.customId === button.customId;
+    });
 
     const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
 
     collector.on('collect', async i => {
-        if (i.customId === 'primary') {
-            await i.update({ content: 'A button was clicked!', components: [] });
-        }
+      const moveIndex = Object.keys(moveList).find(move => {
+        console.log(`move.id: ${moveList[move].id} i.customId: ${i.customId}`)
+        if (moveList[move].id === i.customId)
+          return moveList[move].name;
+      });
+      embed.setTitle(moveList[moveIndex].name);
+      embed.setDescription(moveList[moveIndex].desc);
+      await i.update({ embeds: [embed] });
+      // if (i.customId === 'primary') {
+      //     await i.update({ content: 'A button was clicked!', components: [] });
+      // }
     });
 
     collector.on('end', collected => console.log(`Collected ${collected.size} items`));

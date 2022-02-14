@@ -1,0 +1,6 @@
+{
+    "name": "Face Danger",
+    "id": "face-danger",
+    "type": "Basic",
+    "desc": "When you use your abilities to avoid an incoming hit, endure harm, resist a malign influence, or hold it together, the MC (or player) will name a status with its tag and tier. Roll+Power.\nOn a 10+, you fend off the effect and take no status at all.\nOn a 7-9, you take the status, but with -1 tier.\nOn a miss, you take the full status."
+}
