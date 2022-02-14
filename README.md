@@ -12,6 +12,8 @@ This project uses Discord.js to create a Discord bot to facilitate playing the
 ```json
 {
   "token": "<insert token here>"
+  "guildId": "<insert ID of test server here>"
+  "clientId": "<insert Discord Dev Portal ID here>"
 }
 ```
 - Run `npm start`, or `node .` when at the root of the repo.
