@@ -2,5 +2,6 @@
     "name": "Convince",
     "id": "convince",
     "type": "Basic",
-    "desc": "When you use your abilities to talk, threaten, or seduce someone into doing something, roll+Power. On a hit, choose a relevant status with tier=Power. Your target can choose either to take the status or:\n- on a 7-9, to give in a little, but protect their own agenda.\n- on a 10+, to change their agenda to include yours, at least for the time being."
+    "desc": "When you use your abilities to talk, threaten, or seduce someone into doing something, roll+Power. On a hit, choose a relevant status with tier=Power. Your target can choose either to take the status or:\n- on a 7-9, to give in a little, but protect their own agenda.\n- on a 10+, to change their agenda to include yours, at least for the time being.",
+    "dynamite": "You get to literally bang a dragon or something idk"
 }

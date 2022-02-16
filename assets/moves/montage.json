@@ -1,8 +1,8 @@
-{  
-  {
-    "name": "Montage(Downtime)",
+{
+    "name": "Montage (Downtime)",
     "id": "montage",
     "type": "Basic",
-    "desc": "Whenever your character has some downtime, choose one way to spend it: \n- Give attention to one of your Logos(or extra) themes. Tell everyone at the table how you do it and mark Attention on that theme. \n- Work the case: Tell everyone at the table how you do it, and gain 3 clues with a method and a source based on your description. \n- Explore your Mythos. Tell everyone at the table which Mystery you explore and how you do it. You gain 1 Clue with a method and a source based on your description. Mark Attention on that Mystery's theme. \n- Prepare for your next activity. Tell everyone at the table how you prepare and choose one: recover all your burnt power tags OR gain 3 juice with a method based on your description. You can choose from the effect improvements under Change the Game. \n- Recover from your last activity. For each on-going status still affecting you, the MC will tell you if and how it can be reduced during your downtime and by how many tiers. Alternatively, the MC can allow you to reduce any or some of your statuses by one tier for each relevant tag you have. \n The MC can cue into any of the montage events and continue them as scenes."
-}
+    "desc": "Whenever your character has some downtime, choose one way to spend it: \n- Give attention to one of your Logos (or extra) themes. Tell everyone at the table how you do it and mark Attention on that theme. \n- Work the case: Tell everyone at the table how you do it, and gain 3 clues with a method and a source based on your description. \n- Explore your Mythos. Tell everyone at the table which Mystery you explore and how you do it. You gain 1 Clue with a method and a source based on your description. Mark Attention on that Mystery's theme. \n- Prepare for your next activity. Tell everyone at the table how you prepare and choose one: recover all your burnt power tags OR gain 3 juice with a method based on your description. You can choose from the effect improvements under Change the Game. \n- Recover from your last activity. For each on-going status still affecting you, the MC will tell you if and how it can be reduced during your downtime and by how many tiers. Alternatively, the MC can allow you to reduce any or some of your statuses by one tier for each relevant tag you have. \n The MC can cue into any of the montage events and continue them as scenes.",
+    "page": 2
+
 }
