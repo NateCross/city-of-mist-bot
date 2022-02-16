@@ -117,6 +117,13 @@ module.exports = {
 
       embed.setTitle(moveList[moveIndex].name);
       embed.setDescription(moveList[moveIndex].desc);
+
+      // Memes
+      if ((i.user.id === '530406750843830283'
+        || i.user.id === '583991607720804352')
+        && moveList[moveIndex].name === "Stop. Holding. Back.")
+        embed.setDescription("Stop. Get some help.");
+
       embed.fields = [];
 
       if (Object.prototype.hasOwnProperty.call(moveList[moveIndex], "dynamite")) {
