@@ -6,27 +6,6 @@ const { token } = require('./config.json');
 // In particular, it is used for the prefix of commands.
 const fs = require("fs");
 
-// This colors library is for prettying console output
-// Makes the debug console output more pleasing to read
-// const colors = require('colors');
-
-// Globally defined, so that fs can interact with it
-// var prefix = "~";
-
-// fs.readFile("./src/variables.json", "utf8", (err, jsonString) => {
-//   if (err) {
-//     console.log("File read failed:", err);
-//     return;
-//   }
-//   try {
-//     const variablesJSON = JSON.parse(jsonString);
-//     console.log("Successfully read variables.json");
-//     prefix = variablesJSON.prefix;
-//   } catch (err) {
-//     console.log("Error parsing variables.json:", err);
-//   }
-// });
-
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -40,6 +19,7 @@ const commandFiles = fs.readdirSync('./commands')
 const eventFiles = fs.readdirSync('./events')
                    .filter(file => file.endsWith('.js'));
 
+// Registers each js file in the commands folder as a slash command
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   // Set a new item in the Collection
@@ -47,6 +27,7 @@ for (const file of commandFiles) {
   client.commands.set(command.data.name, command);
 }
 
+// Registers each js file in the events folder as an event to interact with
 for (const file of eventFiles) {
   const event = require(`./events/${file}`);
   if (event.once) {
@@ -56,18 +37,5 @@ for (const file of eventFiles) {
   }
 }
 
-// When the client is ready, run this code (only once)
-// client.once('ready', () => {
-//   console.log(`The prefix is: ${prefix}`);
-//   console.log(`Ready as ${client.user.username}!`.blue.bold);
-// });
-
-// Handles messages
-// client.on("messageCreate", function(message) {
-//   
-// });
-
 // Login to Discord with your client's token
 client.login(token);
-
-

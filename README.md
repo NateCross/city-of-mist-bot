@@ -25,10 +25,13 @@ This project uses Discord.js to create a Discord bot to facilitate playing the
 ## Features
 - [x] Display Core Moves
   - [ ] Display the other player moves
+  - [x] Group moves by type and page
+    - [ ] Show different types of moves depending on the command
+    - [ ] Immediately look up a move
 - [ ] Show info for each theme
+- [ ] Simple 2d6 + number dice roller
 
 ## TODO
-- [?] Try to use those fancy Discord features
+- [ ] Try to use those fancy Discord features
   - [x] Embeds with buttons for displaying moves
-- [ ] Maybe add a dice roller
 - [ ] Maybe add a way to track characters

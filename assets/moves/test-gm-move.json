@@ -1,0 +1,7 @@
+{
+    "name": "Test MC Move",
+    "id": "test-mc",
+    "type": "MC",
+    "desc": "This is a test MC move.",
+    "dynamite": "Yeah baby, you bet I'm dynamite."
+}
