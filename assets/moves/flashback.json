@@ -2,5 +2,6 @@
     "name": "Flashback",
     "id": "flashback",
     "type": "Basic",
-    "desc": "Whenever you declare that you have retroactively done something or set something up, roll+Power and describe the flashback showing how it happened. \n- On a 10+, your setup's good to go; it happens as you say. \n- On a 7-9, your setup happens, alright, but not in the way you want or expect it—there's a hitch or complication to boot. \n- On a miss, you did set it up, surprisingly, but you're either boned in the present, or something boned your prep... which you probably may not be totally aware of, right?"
+    "desc": "Whenever you declare that you have retroactively done something or set something up, roll+Power and describe the flashback showing how it happened. \n\n- On a 10+, your setup's good to go; it happens as you say. \n\n- On a 7-9, your setup happens, alright, but not in the way you want or expect it—there's a hitch or complication to boot. \n\n- On a miss, you did set it up, surprisingly, but you're either boned in the present, or something boned your prep... which you probably may not be totally aware of, right?",
+    "page": 2
 }

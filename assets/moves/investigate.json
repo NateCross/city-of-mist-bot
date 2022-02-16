@@ -2,5 +2,5 @@
     "name": "Investigate",
     "id": "investigate",
     "type": "Basic",
-    "desc": "When you use your abilities to seek answers to burning questions, roll+Power. On a hit, you get Clues=Power. Spend your Clues one-to-one to ask the MC a question about the subject of your investigation or ask another player a relevant question about their character. They must give you either a straight answer or a solid lead. On a 7-9, they can also choose 1:\n- Your investigation exposes you to danger.\n- The clues you get are fuzzy, incomplete, or part-true part-false.\n- Whoever or whatever you are asking the question(s) can ask you one question as well. You answer on the same terms."
+    "desc": "When you use your abilities to seek answers to burning questions, roll+Power. On a hit, you get Clues=Power. Spend your Clues one-to-one to ask the MC a question about the subject of your investigation or ask another player a relevant question about their character. They must give you either a straight answer or a solid lead. On a 7-9, they can also choose 1:\n\n- Your investigation exposes you to danger.\n\n- The clues you get are fuzzy, incomplete, or part-true part-false.\n\n- Whoever or whatever you are asking the question(s) can ask you one question as well. You answer on the same terms."
 }
