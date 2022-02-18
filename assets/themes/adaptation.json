@@ -3,6 +3,7 @@
 	"id": "adaptation",
 	"type": "Mythos",
 	"concept": "How does your Mythos adapt to the circumstances?",
+    "desc": "Mortal life is in a constant state of flux and change: nothing is permanent, everything is ephemeral. Different challenges require entirely different means to overcome. Some Mythoi grant their Rifts the power to adapt to circumstance. Do they consciously do this to improve the Rift’s chances of telling their story? Or is it simply the case because their story is a story of resourcefulness and limitless possibilities to begin with? It is impossible to know.\n\nThe aboriginal Mythos of Dreamtime could allow its Rift to tap into the dimension underlying creation and bend reality. Merlin the sorcerer could whip out a spell to tackle any situation. A shaman could shapeshift into animals and monsters. A doppleganger could mimic the powers of other Rifts it touches. And Pinocchio's father, Geppetto, could build toys and puppets that come to life. \n\nAdaption themes gravitate towards broad tags by nature and so often take up the single broad tag allowed for your character (see Broad vs. Specific Tags, page 110). However, if the variety of effects granted by this theme is rather narrow, such as the doppelganger, who can only copy existing powers, the MC may rule that a tag still qualifies as specific.",
 	"power": {
 		"What Mythos power allows you to respond differently to every situation?": [
 			"cast a magic spell", "lord of the tempests", "shape-shifting",

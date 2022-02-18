@@ -104,13 +104,15 @@ module.exports = {
     const filter = i => moveList.some(button => {
       return i.customId === button.id;
     });
+    // const filter = i => i.user.id === interaction.user.id;
 
     // NOTE: Is a time of 100000 still valid? Needs testing
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 100000 });
+    const collector = interaction.channel
+      .createMessageComponentCollector({ filter, time: 100000 });
 
     collector.on('collect', async i => {
-      if (i.user.id !== interaction.user.id)
-        return;
+      // if (i.user.id !== interaction.user.id)
+      //   return;
 
       const moveIndex = Object.keys(moveList).find(move => {
         if (moveList[move].id === i.customId)

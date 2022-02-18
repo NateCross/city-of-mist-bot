@@ -1,33 +1,54 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, MessageSelectMenu, MessageEmbed } =
+const { MessageActionRow, MessageButton, MessageSelectMenu, MessageEmbed, Message } =
   require('discord.js');
 const fs = require('fs');
 
+// Setting
+const EmbedColor = '#E300D2';
+
 // Declaring buttons to be used
-
-// class ThemeButton {
-//   constructor(id, label) {
-//     this.button = new MessageButton()
-//       .setCustomId(id)
-//       .setLabel(label)
-//       .setStyle('PRIMARY');
-//   }
-// }
-
-const InfoButton = {
+const DescButton = {
   button: new MessageButton()
-    .setCustomId('info')
-    .setLabel('Info')
+    .setCustomId('desc')
+    .setLabel('Description')
     .setStyle('PRIMARY'),
   execute: (themeObj, embed) => {
-    console.log(Object.keys(themeObj.power));
-    embed.setTitle('Power Tags');
-
+    embed.setTitle('Description');
+    embed.setDescription(themeObj.desc);
     embed.fields = [];
 
-    Object.keys(themeObj.power).forEach(key => embed.addFields(
-      { name: key, value: themeObj.power[key] }
-    ));
+    embed.addField('Concept', themeObj.concept);
+    if (Object.prototype.hasOwnProperty.call(themeObj, 'mystery')) {
+      // embed.addField('Mystery',
+      //   `Examples\n${themeObj.mystery.examples.join('\n')}
+      //   \nQuestions\n${themeObj.mystery.questions.join('\n')}`);
+      embed.addField('Mystery', '\u200B');
+      embed.addField('Examples', themeObj.mystery.examples.join('\n'), true);
+      embed.addField('Questions', themeObj.mystery.questions.join('\n'), true);
+    } else {
+      embed.addField('Identity',
+        `Examples\n${themeObj.identity.examples.join('\n')}
+        \nQuestions\n${themeObj.identity.questions.join('\n')}`);
+
+    }
+    embed.addField('Crew Relationships',
+      themeObj['crew-relationships'].join('\n'));
+  }
+}
+
+const PowerTagButton = {
+  button: new MessageButton()
+    .setCustomId('power')
+    .setLabel('Power Tags')
+    .setStyle('PRIMARY'),
+  execute: (themeObj, embed) => {
+    embed.setTitle('Power Tags');
+    embed.setDescription('');
+    embed.fields = [];
+    //
+    Object.keys(themeObj.power).forEach(key => {
+      embed.addField(key, `*${themeObj.power[key].join(', ')}*`);
+    })
   }
 };
 
@@ -41,12 +62,12 @@ const InfoButton = {
 //     ));
 // };
 
-const buttonList = [ InfoButton ];
+const buttonList = [ DescButton, PowerTagButton ];
 const buttonRow = new MessageActionRow();
 buttonList.forEach(key => buttonRow.addComponents(key.button));
 
-let baseEmbed = new MessageEmbed()
-  .setColor('#E300D2')
+// let baseEmbed = new MessageEmbed()
+//   .setColor(EmbedColor)
 
 const filenames = fs.readdirSync('./assets/themes')
                   .filter(n => n.endsWith('.json'));
@@ -78,7 +99,6 @@ const selectMenu = new MessageActionRow()
     new MessageSelectMenu()
       .setCustomId('theme-name')
       .setPlaceholder('Select a theme to view')
-      // .addOptions(selectMenuOptions),
   );
 
 module.exports = {
@@ -109,6 +129,8 @@ module.exports = {
       components: [selectMenu],
     });
 
+    // const filter = i => themeList.some(key => i.customId === key.id);
+
     const collector = interaction.channel.createMessageComponentCollector({ time: 100000 });
 
     collector.on('collect', async i => {
@@ -118,22 +140,44 @@ module.exports = {
           theme.id === i.values[0]
         );
         console.log(selectedMenuItem);
-        const initialEmbed = baseEmbed
+        // const initialEmbed = baseEmbed
+        //   .setTitle(selectedMenuItem.name)
+        //   .setDescription(selectedMenuItem.concept);
+        const initialEmbed = new MessageEmbed()
           .setTitle(selectedMenuItem.name)
-          .setDescription(selectedMenuItem.concept);
+          .setDescription('Select a button to view the theme\'s information.')
+          .setColor(EmbedColor);
           // TODO: Fill in the basic info field as description
 
         // InfoButton.execute(selectedMenuItem, initialEmbed);
         // const selectMenuAndButtons = [selectMenu].concat(buttonList);
         await i.update({
+          content: `You selected: ${option}`,
           embeds: [initialEmbed],
           components: [selectMenu, buttonRow],
         });
 
       } else if (i.isButton()) {
         console.log('You pressed a button');
-        console.log(i);
-        const updatedEmbed = baseEmbed;
+        // console.log(i);
+        // const updatedEmbed = baseEmbed;
+        const updatedEmbed = new MessageEmbed()
+          .setColor(EmbedColor);
+          // .setFooter(selectedMenuItem.name);
+
+        console.log('Updated Embed');
+        console.log(updatedEmbed);
+        const selectedButton = buttonList.find(key =>
+          key.button.customId === i.customId
+        );
+        // console.log(selectedButton);
+        selectedButton.execute(selectedMenuItem, updatedEmbed);
+
+        await i.update({
+          content: selectedMenuItem.name,
+          embeds: [updatedEmbed],
+        });
+
       }
     });
 
