@@ -7,6 +7,7 @@ const fs = require('fs');
 const EmbedColor = '#E300D2';
 
 // Declaring buttons to be used
+// TODO: Find a way to group these buttons and reduce repetition
 const DescButton = {
   button: new MessageButton()
     .setCustomId('desc')
@@ -18,21 +19,19 @@ const DescButton = {
     embed.fields = [];
 
     embed.addField('Concept', themeObj.concept);
-    if (Object.prototype.hasOwnProperty.call(themeObj, 'mystery')) {
-      // embed.addField('Mystery',
-      //   `Examples\n${themeObj.mystery.examples.join('\n')}
-      //   \nQuestions\n${themeObj.mystery.questions.join('\n')}`);
-      embed.addField('Mystery', '\u200B');
-      embed.addField('Examples', themeObj.mystery.examples.join('\n'), true);
-      embed.addField('Questions', themeObj.mystery.questions.join('\n'), true);
-    } else {
-      embed.addField('Identity',
-        `Examples\n${themeObj.identity.examples.join('\n')}
-        \nQuestions\n${themeObj.identity.questions.join('\n')}`);
 
+    if (Object.prototype.hasOwnProperty.call(themeObj, 'mystery')) {
+      embed.addField('Mystery', '\u200B');
+      embed.addField('Examples', themeObj.mystery.examples.join('\n\n'), true);
+      embed.addField('Questions', themeObj.mystery.questions.join('\n\n'), true);
+    } else {
+      embed.addField('Identity', '\u200B');
+      embed.addField('Examples', themeObj.identity.examples.join('\n\n'), true);
+      embed.addField('Questions', themeObj.identity.questions.join('\n\n'), true);
     }
+
     embed.addField('Crew Relationships',
-      themeObj['crew-relationships'].join('\n'));
+      themeObj['crew-relationships'].join('\n\n'));
   }
 }
 
@@ -52,22 +51,41 @@ const PowerTagButton = {
   }
 };
 
-// InfoButton.button.execute = (themeObj, embed) => {
-//     console.log(Object.keys(themeObj.power));
-//     embed.setTitle('Power Tags');
-//
-//     embed.fields = [];
-//     Object.keys(themeObj.power).forEach(key => embed.addFields(
-//       { name: key, value: themeObj.power[key] }
-//     ));
-// };
+const WeaknessTagButton = {
+  button: new MessageButton()
+    .setCustomId('weakness')
+    .setLabel('Weakness Tags')
+    .setStyle('PRIMARY'),
+  execute: (themeObj, embed) => {
+    embed.setTitle('Weakness Tags');
+    embed.setDescription('');
+    embed.fields = [];
 
-const buttonList = [ DescButton, PowerTagButton ];
+    Object.keys(themeObj.weakness).forEach(key => {
+      embed.addField(key, `*${themeObj.weakness[key].join(', ')}*`);
+    })
+  }
+}
+
+const ImprovementsButton = {
+  button: new MessageButton()
+    .setCustomId('improvements')
+    .setLabel('Improvements')
+    .setStyle('PRIMARY'),
+  execute: (themeObj, embed) => {
+    embed.setTitle('Improvements');
+    embed.setDescription('');
+    embed.fields = [];
+
+    Object.keys(themeObj.improvements).forEach(key => {
+      embed.addField(key, `*${themeObj.improvements[key]}*`);
+    })
+  }
+}
+
+const buttonList = [ DescButton, PowerTagButton, WeaknessTagButton, ImprovementsButton ];
 const buttonRow = new MessageActionRow();
 buttonList.forEach(key => buttonRow.addComponents(key.button));
-
-// let baseEmbed = new MessageEmbed()
-//   .setColor(EmbedColor)
 
 const filenames = fs.readdirSync('./assets/themes')
                   .filter(n => n.endsWith('.json'));
@@ -80,8 +98,7 @@ for (const file of filenames) {
 
 const listOfTypes = themeList.map(theme => theme.type);
 
-console.log(listOfTypes);
-
+// Populating the list of themes per type
 const selectMenuOptions = {};
 listOfTypes.forEach(type =>
   selectMenuOptions[type] = themeList
@@ -91,8 +108,6 @@ listOfTypes.forEach(type =>
       value: theme.id,
     }))
 )
-
-// console.log(selectMenuOptions);
 
 const selectMenu = new MessageActionRow()
   .addComponents(
@@ -119,7 +134,6 @@ module.exports = {
   //////////////////////////////
   async execute(interaction) {
     let selectedMenuItem;
-    console.log(interaction.options.get("type").value);
     const option = interaction.options.get("type").value;
 
     selectMenu.components[0].addOptions(selectMenuOptions[option]);
@@ -129,28 +143,19 @@ module.exports = {
       components: [selectMenu],
     });
 
-    // const filter = i => themeList.some(key => i.customId === key.id);
-
     const collector = interaction.channel.createMessageComponentCollector({ time: 100000 });
 
     collector.on('collect', async i => {
       if (i.isSelectMenu()) {
-        console.log(`interaction: ${i.values[0]}`);
         selectedMenuItem = themeList.find(theme =>
           theme.id === i.values[0]
         );
-        console.log(selectedMenuItem);
-        // const initialEmbed = baseEmbed
-        //   .setTitle(selectedMenuItem.name)
-        //   .setDescription(selectedMenuItem.concept);
+
         const initialEmbed = new MessageEmbed()
           .setTitle(selectedMenuItem.name)
           .setDescription('Select a button to view the theme\'s information.')
           .setColor(EmbedColor);
-          // TODO: Fill in the basic info field as description
 
-        // InfoButton.execute(selectedMenuItem, initialEmbed);
-        // const selectMenuAndButtons = [selectMenu].concat(buttonList);
         await i.update({
           content: `You selected: ${option}`,
           embeds: [initialEmbed],
@@ -158,26 +163,19 @@ module.exports = {
         });
 
       } else if (i.isButton()) {
-        console.log('You pressed a button');
-        // console.log(i);
-        // const updatedEmbed = baseEmbed;
         const updatedEmbed = new MessageEmbed()
           .setColor(EmbedColor);
-          // .setFooter(selectedMenuItem.name);
 
-        console.log('Updated Embed');
-        console.log(updatedEmbed);
         const selectedButton = buttonList.find(key =>
           key.button.customId === i.customId
         );
-        // console.log(selectedButton);
+
         selectedButton.execute(selectedMenuItem, updatedEmbed);
 
         await i.update({
           content: selectedMenuItem.name,
           embeds: [updatedEmbed],
         });
-
       }
     });
 
