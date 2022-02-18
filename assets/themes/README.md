@@ -3,6 +3,7 @@
 - All of the keys (the left-hand side) must be present.
 - The available types are `Mythos` and `Logos`.
 - To do a linebreak, write `'\n\n'`.
+- To check if the file is valid, copy the text to [JSONLint](https://jsonlint.com/).
 
 ## Sample
 ```JSON
