@@ -11,7 +11,6 @@ module.exports = {
         + `in #${interaction.channel.name} executed `
         + `${interaction.commandName}`.red);
 
-
       const command = interaction.client
                       .commands.get(interaction.commandName);
 

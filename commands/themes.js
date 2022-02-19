@@ -109,13 +109,6 @@ listOfTypes.forEach(type =>
     }))
 )
 
-const selectMenu = new MessageActionRow()
-  .addComponents(
-    new MessageSelectMenu()
-      .setCustomId('theme-name')
-      .setPlaceholder('Select a theme to view')
-  );
-
 module.exports = {
   // Setting up command info
   data: new SlashCommandBuilder()
@@ -132,9 +125,26 @@ module.exports = {
   //////////////////////////////
   /// Main driver of command ///
   //////////////////////////////
+
+  /*
+    FIX: There is a bug that occurs when you run two of these at
+    the same time. Discord API throws an error that
+    'Interaction has already been acknowledged'.
+    The try/catch block in the select collector fixes the issue.
+    However, if you run the command twice while selecting
+    different types, selecting one theme will affect the other menu
+    It will also affect the output of the buttons, making it incorrect.
+  */
   async execute(interaction) {
     let selectedMenuItem;
     const option = interaction.options.get("type").value;
+
+    const selectMenu = new MessageActionRow()
+      .addComponents(
+        new MessageSelectMenu()
+          .setCustomId('theme-name')
+          .setPlaceholder('Select a theme to view')
+      );
 
     selectMenu.components[0].addOptions(selectMenuOptions[option]);
 
@@ -146,6 +156,9 @@ module.exports = {
     const collector = interaction.channel.createMessageComponentCollector({ time: 100000 });
 
     collector.on('collect', async i => {
+      console.log(`interaction timestamp: ${i.createdTimestamp}`)
+      console.log(`token: ${i.id}`);
+
       if (i.isSelectMenu()) {
         selectedMenuItem = themeList.find(theme =>
           theme.id === i.values[0]
@@ -156,11 +169,15 @@ module.exports = {
           .setDescription('Select a button to view the theme\'s information.')
           .setColor(EmbedColor);
 
-        await i.update({
-          content: `You selected: ${option}`,
-          embeds: [initialEmbed],
-          components: [selectMenu, buttonRow],
-        });
+        try {
+          await i.update({
+            content: `You selected: ${option}`,
+            embeds: [initialEmbed],
+            components: [selectMenu, buttonRow],
+          });
+        } catch (err) {
+          collector.stop();
+        }
 
       } else if (i.isButton()) {
         const updatedEmbed = new MessageEmbed()
