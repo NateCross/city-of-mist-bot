@@ -156,9 +156,6 @@ module.exports = {
     const collector = interaction.channel.createMessageComponentCollector({ time: 100000 });
 
     collector.on('collect', async i => {
-      console.log(`interaction timestamp: ${i.createdTimestamp}`)
-      console.log(`token: ${i.id}`);
-
       if (i.isSelectMenu()) {
         selectedMenuItem = themeList.find(theme =>
           theme.id === i.values[0]
@@ -171,7 +168,7 @@ module.exports = {
 
         try {
           await i.update({
-            content: `You selected: ${option}`,
+            content: selectedMenuItem.name,
             embeds: [initialEmbed],
             components: [selectMenu, buttonRow],
           });
