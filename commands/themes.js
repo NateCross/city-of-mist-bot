@@ -33,7 +33,7 @@ const DescButton = {
     embed.addField('Crew Relationships',
       themeObj['crew-relationships'].join('\n\n'));
   }
-}
+};
 
 const PowerTagButton = {
   button: new MessageButton()
@@ -47,7 +47,7 @@ const PowerTagButton = {
     //
     Object.keys(themeObj.power).forEach(key => {
       embed.addField(key, `*${themeObj.power[key].join(', ')}*`);
-    })
+    });
   }
 };
 
@@ -63,9 +63,9 @@ const WeaknessTagButton = {
 
     Object.keys(themeObj.weakness).forEach(key => {
       embed.addField(key, `*${themeObj.weakness[key].join(', ')}*`);
-    })
+    });
   }
-}
+};
 
 const ImprovementsButton = {
   button: new MessageButton()
@@ -79,9 +79,9 @@ const ImprovementsButton = {
 
     Object.keys(themeObj.improvements).forEach(key => {
       embed.addField(key, `*${themeObj.improvements[key]}*`);
-    })
+    });
   }
-}
+};
 
 const buttonList = [ DescButton, PowerTagButton, WeaknessTagButton, ImprovementsButton ];
 const buttonRow = new MessageActionRow();
@@ -107,7 +107,7 @@ listOfTypes.forEach(type =>
       label: theme.name,
       value: theme.id,
     }))
-)
+);
 
 module.exports = {
   // Setting up command info

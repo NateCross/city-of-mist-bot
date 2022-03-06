@@ -1,0 +1,38 @@
+// Only need to run once the database has been modified
+const Sequelize = require('sequelize');
+const fs = require('fs');
+
+// Advised in the Discord.js tutorial to not touch unless
+// you know what you are doing
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'sqlite',
+  logging: false,
+  storage: 'database.sqlite',
+});
+
+// const dbModels = fs.readdirSync('./models')
+//                  .filter(file => file.endsWith('.js'));
+
+// const CharacterTracker = dbModels.map
+
+
+// Some boilerplate to initialize the thing
+const CharacterTracker = require('./models/Characters.js')(sequelize, Sequelize.DataTypes);
+require('./models/Users.js')(sequelize, Sequelize.DataTypes);
+require('./models/Statuses.js')(sequelize, Sequelize.DataTypes);
+
+const force = process.argv.includes('--force') || process.argv.includes('-f');
+
+sequelize.sync({ force }).then(async () => {
+  // Putting this here to test so it's the same as the tutorial
+  const character = [
+    CharacterTracker.upsert({ name: 'Sophie Hale' }),
+  ];
+
+  await Promise.all(character);
+  console.log('Database synced');
+
+  sequelize.close();
+}).catch(console.error);
+
