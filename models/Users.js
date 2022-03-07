@@ -4,6 +4,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       primaryKey: true,
     },
+    current_character: {
+      type: DataTypes.STRING,
+    },
     // Place characters here
   }, {
     timestamps: false,

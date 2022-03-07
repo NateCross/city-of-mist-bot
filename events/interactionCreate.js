@@ -5,7 +5,7 @@ module.exports = {
   async execute(interaction) {
     // Fancy console output
     const time = interaction.createdAt;
-    console.log(`[${time.toLocaleTimeString()}]`.blue.bold);
+    process.stdout.write(`[${time.toLocaleTimeString()}] `.blue.bold);
     if (interaction.isCommand()) {
       console.log(`${interaction.user.tag} `.green
         + `in #${interaction.channel.name} executed `
