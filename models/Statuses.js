@@ -1,7 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('statuses', {
-    // Links to character
-    character_name: DataTypes.STRING,
+    status_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     status_name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -9,7 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     status_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 1,
     },
+    character_id: DataTypes.INTEGER,
+    // characterCharacterId: DataTypes.INTEGER,
   }, {
     timestamps: false,
   });

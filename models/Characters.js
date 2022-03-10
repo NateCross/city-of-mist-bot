@@ -1,17 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('character', {
+    character_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
     name: {
       type: DataTypes.STRING,
       unique: true,
     },
-    character_id: {
-      type: DataTypes.STRING,
-    },
     user_id: {
       type: DataTypes.STRING,
+      unique: true,
     },
     portrait_link: DataTypes.STRING,
-    // Insert custom moves, themes, statuses
   }, {
     timestamps: false,
   });

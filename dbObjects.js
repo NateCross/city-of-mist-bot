@@ -12,36 +12,36 @@ const Users = require('./models/Users.js')(sequelize, Sequelize.DataTypes);
 const Statuses = require('./models/Statuses.js')(sequelize, Sequelize.DataTypes);
 
 // Defining associations
-// Characters.hasMany(Statuses, { as: "Statuses", foreignKey: 'status',  });
-// Statuses.belongsTo(Characters);
+// These are the ones that seem to work rather consistently
+// Do not touch unless there's a very good reason
+// and if this is touched, make sure to run
+// 'node dbInit.js -f'
+Users.hasMany(Characters, { foreignKey: 'user_id'} );
+Characters.hasMany(Statuses, { foreignKey: 'character_id'} );
+
+Characters.belongsTo(Users, { foreignKey: 'user_id'} );
+Statuses.belongsTo(Characters, { foreignKey: 'character_id'} );
 
 ////////////////////////////////////
 /// Defining Prototype Functions ///
 ////////////////////////////////////
 
-Reflect.defineProperty(Users.prototype, 'createChar', {
-  value: async (characterName, userId) => {
-    return Characters.create({
-      user_id: userId, name: characterName,
+// NOTE: Do not use arrow functions for Users
+// This is because it uses 'this,' which seems to break when
+// arrow functions are used—it doesn't have any value if so
+// Using regular functions, however, work as intended
+
+Reflect.defineProperty(Users.prototype, 'getChar', {
+  value: async function(characterName) {
+    return Characters.findOne({
+      where: { name: characterName, user_id: this.user_id },
     });
   }
 });
 
-Reflect.defineProperty(Users.prototype, 'getChar', {
-  value: async (characterName, userId) => {
-    // if (characterName)
-      return Characters.findOne({
-        where: { name: characterName, user_id: userId },
-      });
-    // else
-    //   return Characters.findOne({
-    //     where: { name: Users.getCurrentChar(userId) },
-    //   });
-  }
-});
 
 Reflect.defineProperty(Users.prototype, 'getArrOfChars', {
-  value: () => {
+  value: async function() {
     return Characters.findAll({
       where: { user_id: this.user_id },
     });
@@ -49,31 +49,23 @@ Reflect.defineProperty(Users.prototype, 'getArrOfChars', {
 });
 
 Reflect.defineProperty(Users.prototype, 'setCurrentChar', {
-  value: async (currChar, userId) => {
-    return Users.update( { current_character: currChar },
-      { where: { user_id: userId }} );
+  value: async function(currChar) {
+    if (await this.getChar(currChar))
+      return Users.update( { current_character: currChar },
+        { where: { user_id: this.user_id }});
+    else
+      return undefined;
   }
 });
 
 Reflect.defineProperty(Users.prototype, 'getCurrentChar', {
-  value: async userId => {
-    // await Users.update({ current_character: })
-    return Users.findOne({ attributes: ['current_character'] }, { where: { user_id: userId }});
-    // console.log(`charId: ${charId}`);
-
-    // return Characters.findOne({ })
-  }
-});
-
-Reflect.defineProperty(Characters.prototype, 'createStatus', {
-  value: async (characterName, statusName, statusValue) => {
-    return Statuses.create({ character_name: characterName, status_name: statusName, status_value: statusValue });
-  }
-});
-
-Reflect.defineProperty(Characters.prototype, 'getStatuses', {
-  value: async (characterName) => {
-    return Statuses.findAll({ where: { character_name: characterName } });
+  value: async function() {
+    // return Users.findOne({
+    //   attributes: ['current_character'] },
+    //   { where: { user_id: this.user_id }});
+    return Characters.findOne({
+      where: { name: this.current_character }
+    });
   }
 });
 
