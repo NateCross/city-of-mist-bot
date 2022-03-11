@@ -60,11 +60,16 @@ Reflect.defineProperty(Users.prototype, 'setCurrentChar', {
 
 Reflect.defineProperty(Users.prototype, 'getCurrentChar', {
   value: async function() {
-    // return Users.findOne({
-    //   attributes: ['current_character'] },
-    //   { where: { user_id: this.user_id }});
     return Characters.findOne({
       where: { name: this.current_character }
+    });
+  }
+});
+
+Reflect.defineProperty(Characters.prototype, 'findStatus', {
+  value: async function(statusName) {
+    return Statuses.findOne({
+      where: { status_name: statusName, character_id: this.character_id}
     });
   }
 });

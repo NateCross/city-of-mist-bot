@@ -15,6 +15,7 @@ const getMethods = (obj) => {
   return [...properties.keys()].filter(item => typeof obj[item] === 'function');
 };
 
+// TODO: Make these subcommands instead
 module.exports = {
   data: new SlashCommandBuilder()
     .setName('character')
@@ -43,13 +44,16 @@ module.exports = {
     const user = await Users.findOne({ where: { user_id: interaction.user.id } });
 
     if (interaction.options.get('create')) {
+
       const createName = interaction.options.get('create').value;
 
-      await user.createCharacter({ name: createName });
-
-      await interaction.reply(`Created character **${createName}**.`);
+      if (await user.createCharacter({ name: createName }))
+        await interaction.reply(`Created character **${createName}**.`);
+      else
+        await interaction.reply('Unable to create character.');
 
     } else if (interaction.options.get('view')) {
+
       const viewName = interaction.options.get('view').value;
 
       const character = await user.getChar(viewName);
@@ -57,8 +61,6 @@ module.exports = {
       if (character) {
 
         const statuses = await character.getStatuses();
-
-        console.log(`Statuses: ${statuses}`);
 
         const embed = new MessageEmbed()
           .setTitle(character.name)

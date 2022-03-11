@@ -12,11 +12,14 @@ const sequelize = new Sequelize('database', 'username', 'password', {
 });
 
 // Some boilerplate to initialize the thing
+// const CharacterTracker = require('./models/Characters.js')(sequelize, Sequelize.DataTypes);
 require('./models/Characters.js')(sequelize, Sequelize.DataTypes);
 require('./models/Users.js')(sequelize, Sequelize.DataTypes);
 require('./models/Statuses.js')(sequelize, Sequelize.DataTypes);
 
-sequelize.sync({force: true}).catch(console.error);
+const force = process.argv.includes('--force') || process.argv.includes('-f');
+
+sequelize.sync({force}).catch(console.error);
 
 console.log('Database reset.');
 

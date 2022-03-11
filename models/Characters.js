@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_id: {
       type: DataTypes.STRING,
-      unique: true,
     },
     portrait_link: DataTypes.STRING,
   }, {
