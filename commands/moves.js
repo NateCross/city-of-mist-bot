@@ -9,7 +9,6 @@ const utils = require('../utils/group-objects-by-property');
 const filenames = fs.readdirSync('./assets/moves')
                   .filter(n => n.endsWith('.json'));
 
-
 // Scanning moves dir for json files of moves, pushed to an array
 const moveList = [];
 for (const file of filenames) {
@@ -105,11 +104,16 @@ module.exports = {
     const filter = i => moveList.some(button => {
       return i.customId === button.id;
     });
+    // const filter = i => i.user.id === interaction.user.id;
 
     // NOTE: Is a time of 100000 still valid? Needs testing
-    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 100000 });
+    const collector = interaction.channel
+      .createMessageComponentCollector({ filter, time: 100000 });
 
     collector.on('collect', async i => {
+      // if (i.user.id !== interaction.user.id)
+      //   return;
+
       const moveIndex = Object.keys(moveList).find(move => {
         if (moveList[move].id === i.customId)
           return moveList[move].name;   // TODO: Make it return object

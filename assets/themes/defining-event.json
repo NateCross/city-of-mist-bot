@@ -1,0 +1,91 @@
+{
+	"name": "Defining Event",
+	"id": "defining-event",
+	"type": "Logos",
+	"concept": "What happened to you that changed your life forever?",
+	"desc": "Life throws you curveballs you can’t anticipate, dramatic events that shape you irrevocably. For better or worse, the person you used to be before this event either ceased to exist or was abandoned in favor of a new version of you, one that was forged in that fateful moment or period. Perhaps it was an accident, a crime you were involved in, a revelation, a chance meeting that influenced you, a great victory, a time of trials, etc. \n\nThe Defining Event theme focuses on the residual influence of a specific event or time in your character’s life. Having a Defining Event theme means you still define yourself through that moment or time in your life. If the follow-up of that event is just as central to your story as the memory of what happened and how it shaped you, you should pick another appropriate theme (either in addition to or instead of the Defining Event theme). For example, if you swore to do something following a tragic event, perhaps a Mission theme is in order; if you gained Mythos powers, you should represent them using one of the Mythos theme types.",
+	"power": {
+		"What kind of strong emotion did your defining event leave you with?": [
+            "filled with rage", "a sense of unity with all life",
+            "driven to mete out justice", "ambition"
+		],
+		"What part of your old self, while deeply changed, still serves you?": [
+            "ex-celebrity", "youthful curiosity", "inherited fortune",
+            "love of the local community"
+		],
+        "What mundane but useful object did you obtain during your defining event that has been with you ever since?": [
+            "Helix Labs access card", "a rusty sword", "a picture of my enemy",
+            "fancy clothes"
+        ],
+        "What authority was vested in you during your defining event or after it?": [
+            "leader of a secret order of knights", "the chosen one",
+            "head of a corporation", "City mayor"
+        ],
+        "Who did you bond or connect with in the aftermath of your defining event?": [
+            "media connections", "a majestic eagle", "a trusted butler",
+            "a secret sponsor", "a gang of lowlifes and rejects"
+        ],
+        "What skill or mundane ability did you pick up during or due to your defining event?": [
+            "meditation", "swordsmanship", "light sleep", "lying shamelessly",
+            "wilderness survival"
+        ],
+        "What knowledge did you gain access to thanks to your defining event?": [
+            "can't be too safe", "humility", "always prepared", "power-hungry",
+            "survival of the fittest"
+        ],
+        "What physical change or improvement stemmed from your defining event?": [
+            "acute sense of smell", "great reflexes", "sprinter", "fake smile"
+        ],
+        "How do people treat you because of your defining event?": [
+            "secret admirer", "commands reverence", "fearsome",
+            "no one dares to refuse me"
+        ]
+	},
+	"weakness": {
+		"What emotional scar or baggage did your defining event leave you with?": [
+            "emotional", "craves guidance", "vengeful", "hollow inside",
+            "angry at ex-partner"
+		],
+		"Following your defining event, what responsibility or social burdens do you have to shoulder?": [
+            "rejected as a freak", "oath of solitude", "pretends to be a playboy",
+            "angry voters", "a never-ending to-do list"
+		],
+        "Who or what is haunting you because of your defining event?": [
+            "Helix Labs investigators", "agents of the rival faction",
+            "nightmares and flashbacks", "enamored secretary"
+        ],
+        "What is now broken within you, physically or mentally, due to your defining event?": [
+            "light sensitivity", "training injury", "over-exhaustion",
+            "asthma attack", "twisted psyche"
+        ]
+	},
+	"identity": {
+		"examples": [
+			"(Unwillingly killed love one) \"I will never forgive myself.\"",
+			"(Mountain-top experience) \"Peace within and without is the path to enlightenment.\"",
+			"(Big heist) \"One last job, they said. Never again.\""
+		],
+		"questions": [
+			"A world view that you adopted following your defining event",
+			"Something you promised to yourself or someone else following your defining event",
+			"How you perceive yourself in light of your defining event"
+		]
+	},
+	"title": [
+		"(Unwillingly killed loved one) Never Say His Name",
+		"(Mountain-top experience) Path of Tranquility",
+		"(Big heist) The Museum Job"
+	],
+	"crew-relationships": [
+		"One of them was present in your defining event. What was their part in it? Take a Help or Hurt point on them or accordingly.",
+        "One of them is trying to help you (or make you) get over your defining event and move on. If you appreciate it, take a Help point on them. If you resent it, take a Hurt point on them.",
+        "In the aftermath of your defining event, one of them was there to help you pick up your life without judging or asking questions. Take a Help point on them."
+	],
+	"improvements": {
+		"Touchy Subject": "Whenever someone else mentions your defining event in a way that irks or offends you, you can choose to go into an emotional state and take an appropriate tier-2 status of your choice for the rest of the scene or until you calm down, whichever comes sooner. When it’s over, the MC will give you an ongoing tier-1 status to reflect the aftermath of our behavior.",
+		"Take It To The Grave": "When other PCs get a Clue on you, or when the MC asks you a question to which you must reply with a straight answer or a solid lead, they can’t ask you about your defining event.",
+		"Echoes From The Past": "Choose and answer a power tag question from the Training, Routine, or Defining Relationship themebooks that reflects something of who you were before, something that now re-emerges. Write down the answer as a new power tag on this theme.",
+		"Over It": "Whenever the MC or another player invokes one of this theme’s weakness tags, you can say \"I’m over it\" and count the tag as a power tag instead. Mark Crack.",
+		"Getting Good at This": "You’ve become comfortable with who you are now. Choose a Core Move that best reflects the way you use this theme’s tags. Whenever you use it with tags from this theme, it’s Dynamite!"
+	}
+}
