@@ -78,13 +78,7 @@ module.exports = {
           embed.addField('Statuses', reducedStatuses);
         }
 
-          // embed.addField('Statuses', statuses.join('\n'));
-        // statuses.forEach(status =>
-        //   embed.addField()
-        // )
-
         await interaction.reply({ embeds: [embed] });
-        // await interaction.reply(`Character name is **${character.name}**.`);
       }
       else
         await interaction.reply('Unable to view character.');
@@ -98,34 +92,6 @@ module.exports = {
       else
         await interaction.reply('Unable to set current character.');
 
-    } else if (interaction.options.get('status')) {
-
-      // const currentUser = await user.getCurrentChar(interaction.user.id);
-      const currentCharacterName = user.current_character;
-      console.log(`Current Char Name: ${currentCharacterName}`);
-      const currentCharacter = await user.getCurrentChar(currentCharacterName);
-      const status = interaction.options.get('status').value;
-
-      console.log(`Character name: ${currentCharacter.name}`);
-      console.log(util.inspect(currentCharacter, false, null, true /* enable colors */));
-      console.log(`Character methods`);
-      console.log(getMethods(currentCharacter));
-
-      console.log("Before Creating Status");
-      // await currentCharacter.createStatus(currentCharacter.name, status, 1);
-      // await Statuses.create({ character_name: currentCharacter.name, status_name: status, status_value: 1});
-      await currentCharacter.createStatus({
-        status_name: status,
-        status_value: 1,
-      });
-
-      console.log("After creating status");
-
-      // console.log(currentCharacter.getStatuses(currentCharacter.name));
-      const ListOfStatuses = await Statuses.findAll({ where: { character_name: currentCharacter.id }});
-      console.log(ListOfStatuses);
-
-      await interaction.reply(`Created status **${status}: 1** on character ${currentCharacter.name}`);
     }
   },
 };
